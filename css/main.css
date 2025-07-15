@@ -1,0 +1,15 @@
+* {
+    font-family: monospace, monospace;
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+}
+
+body {
+    background-image: url('../img/target.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    min-height: 100vh;
+}
