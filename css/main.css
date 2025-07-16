@@ -65,7 +65,31 @@ h1 {
 }
 
 #error {
-    min-height: 1em;
+    min-height: 1.2em;
     background-color: rgba(0, 0, 0, 0.35);
     text-align: center;
+}
+
+.dashboard {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.header {
+    background-color: rgba(0, 0, 0, 0.90);
+    color: whitesmoke;
+    padding: .5em;
+    text-align: center;
+    min-height: 42px;
+}
+
+.content {
+    background-color: rgba(0, 0, 0, 0.35);
+    color: whitesmoke;
+    padding: .5em;
+    text-align: center;
+    font-size: 2rem;
 }

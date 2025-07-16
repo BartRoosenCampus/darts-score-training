@@ -3,6 +3,10 @@
 export class PageHandler {
     elements;
     throws = [];
+    totalScore = 0;
+    averageScore = 0;
+    nineDartAverage = 0;
+    totalDarts = 0;
 
     constructor(elements) {
         this.elements = elements;
@@ -79,8 +83,35 @@ export class PageHandler {
             this.elements.inputThrow.value = "";
             this.throws.push(number);
             this.elements.error.innerHTML = `Nummer ${number} toegevoegd`;
+            this.calculateScores();
         } else {
             this.elements.error.innerHTML = "Eerst een nummer ingeven";
         }
+    }
+
+    calculateScores() {
+        this.totalScore = 0;
+        this.throws.forEach((number) => {
+            this.totalScore += number;
+        });
+
+        if (0 !== this.throws.length) this.averageScore = (this.totalScore / this.throws.length).toFixed(2);
+
+        if (this.throws.length >= 3) {
+            this.nineDartAverage = ((this.throws.slice(-3).reduce((a, b) => a + b, 0)) / 3).toFixed(2);
+        }
+
+        this.totalDarts = this.throws.length * 3;
+
+        this.elements.totalScore.innerHTML = (this.totalScore).toString();
+        this.elements.averageScore.innerHTML = (this.averageScore).toString();
+        this.elements.nineDartAverageScore.innerHTML = (this.nineDartAverage).toString();
+        this.elements.totalDartCount.innerHTML = (this.totalDarts).toString();
+
+        // console.log(this.throws);
+        // console.log(`total score: ${this.totalScore}`);
+        // console.log(`avg: ${this.averageScore}`);
+        // console.log(`nineDart: ${this.nineDartAverage}`);
+        // console.log(`Total darts: ${this.totalDarts}`);
     }
 }
