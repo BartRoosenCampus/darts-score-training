@@ -41,17 +41,17 @@ h1 {
     margin: 0 auto;
     border-radius: 20%;
     border: none;
-    transition: all 0.1s ease;
-}
-
-.functionKey {
-    background-color: #333;
+    transition: all 0.3s ease;
 }
 
 .key:active {
     transform: scale(0.50);
     background-color: whitesmoke;
     color: black;
+}
+
+.functionKey {
+    background-color: #333;
 }
 
 #inputThrow {
