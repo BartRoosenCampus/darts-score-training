@@ -30,7 +30,13 @@ export class PageHandler {
                 case "D":
                     button.classList.add("functionKey");
                     button.addEventListener("click", () => {
-                        this.elements.inputThrow.value = "";
+                        if (this.elements.inputThrow.value === "" && this.throws.length !== 0) {
+                            this.throws.pop();
+                            this.calculateScores();
+                        } else {
+                            this.elements.inputThrow.value = "";
+                        }
+
                         this.elements.error.innerHTML = "";
                     });
                     break;
@@ -95,10 +101,16 @@ export class PageHandler {
             this.totalScore += number;
         });
 
-        if (0 !== this.throws.length) this.averageScore = (this.totalScore / this.throws.length).toFixed(2);
+        if (0 !== this.throws.length) {
+            this.averageScore = (this.totalScore / this.throws.length).toFixed(2);
+        } else {
+            this.averageScore = (0).toFixed(2);
+        }
 
         if (this.throws.length >= 3) {
             this.nineDartAverage = ((this.throws.slice(-3).reduce((a, b) => a + b, 0)) / 3).toFixed(2);
+        } else {
+            this.nineDartAverage = (0).toFixed(2);
         }
 
         this.totalDarts = this.throws.length * 3;
@@ -107,11 +119,5 @@ export class PageHandler {
         this.elements.averageScore.innerHTML = (this.averageScore).toString();
         this.elements.nineDartAverageScore.innerHTML = (this.nineDartAverage).toString();
         this.elements.totalDartCount.innerHTML = (this.totalDarts).toString();
-
-        // console.log(this.throws);
-        // console.log(`total score: ${this.totalScore}`);
-        // console.log(`avg: ${this.averageScore}`);
-        // console.log(`nineDart: ${this.nineDartAverage}`);
-        // console.log(`Total darts: ${this.totalDarts}`);
     }
 }
